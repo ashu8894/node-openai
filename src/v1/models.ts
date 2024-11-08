@@ -35,11 +35,9 @@ type ModelList = {
     object: "list";
 };
 
-export function listModels(client: ApiClient) {
-    return async () => {
-        const list: ModelList = await client("models", { method: "GET" });
-        return list.data;
-    }
+export const listModels = (client: ApiClient) => async () => {
+    const { data } = await client("models", { method: "GET" });
+    retunr data;
 }
 
 export function retrieveModel(client: ApiClient) {
