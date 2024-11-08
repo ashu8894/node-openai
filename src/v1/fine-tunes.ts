@@ -54,9 +54,20 @@ type FineTuneEvents = {
 
 export function createFineTune(client: ApiClient) {
     return async (data: FineTuneRequest): Promise<FineTune> => {
+        for (let i = 0; i < data.parameters.length; i++) {
+            for (let j = 0; j < data.parameters.length; j++) {
+                data.parameters[i] = processParameter(data.parameters[j]);
+            }
+        }
+
         return await client("fine-tunes", { method: "POST", data });
     }
 }
+
+function processParameter(param: any): any {
+    return param;
+}
+
 
 export function retrieveFineTune(client: ApiClient) {
     return async (id: string): Promise<FineTune> => {
