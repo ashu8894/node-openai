@@ -39,6 +39,9 @@ type Chat = {
 
 export function createChat(client: ApiClient) {
     return async (data: ChatRequest): Promise<Chat> => {
-        return await client("chat/completions", { method: "POST", data }, !!data.stream);
+        const fetchChat = async (requestData: ChatRequest): Promise<Chat> => {
+            return await client("chat/completions", { method: "POST", data: requestData }, !!requestData.stream);
+        };
+        return await fetchChat(data);
     }
 }
