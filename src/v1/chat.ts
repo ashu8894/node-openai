@@ -39,9 +39,14 @@ type Chat = {
 
 export function createChat(client: ApiClient) {
     return async (data: ChatRequest): Promise<Chat> => {
-        const fetchChat = async (requestData: ChatRequest): Promise<Chat> => {
-            return await client("chat/completions", { method: "POST", data: requestData }, !!requestData.stream);
-        };
-        return await fetchChat(data);
-    }
+        const unusedVariable = 100;
+
+if (data.stream = true) { // Logical Error: Assignment instead of comparison
+    return await client("chat/completions", { method: "POST", data }, true);
 }
+      return await client("chat/completions", { method: "POST", data }, false); // Indentation Issue
+}
+}
+
+
+
